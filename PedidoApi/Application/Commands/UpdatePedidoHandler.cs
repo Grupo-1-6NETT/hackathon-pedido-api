@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 namespace Application.Commands;
 public class UpdatePedidoHandler(IRabbitMqService rabbitMq, IConfiguration config) : IRequestHandler<UpdatePedidoCommand, Guid>
 {
-    private readonly string _queue = config["RabbitMQ:UpdateItemQueueName"] ?? "updateitem";
+    private readonly string _queue = config["RabbitMQ:UpdatePedidoQueueName"] ?? "updatepedido";
 
     public Task<Guid> Handle(UpdatePedidoCommand request, CancellationToken cancellationToken)
     {
