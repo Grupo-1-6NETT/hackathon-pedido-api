@@ -1,0 +1,6 @@
+@PedidoApi_HostAddress = http://localhost:5291
+
+GET {{PedidoApi_HostAddress}}/pedidoapi/
+Accept: application/json
+
+###
