@@ -104,41 +104,4 @@ public class PedidoController(ISender sender) : ControllerBase
             return StatusCode(500, new { Message = $"Ocorreu um erro interno no servidor." });
         }
     }
-
-    /// <summary>
-    /// Remove o Pedido na base de dados com o ID informado
-    /// </summary>
-    /// <param name="id">O ID do Pedido a ser removido</param>
-    /// <returns>Resultado da operação de remoção</returns>
-    /// <response code="200">Pedido removido com sucesso</response>
-    /// <response code="401">Usuário não autenticado</response>
-    /// <response code="403">Usuário não autorizado</response>
-    /// <response code="404">Pedido não encontrado</response>
-    /// <response code="500">Erro inesperado</response>
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    //[Authorize]
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(Guid id)
-    {
-        try
-        {
-            var command = new DeletePedidoCommand(id);
-            await sender.Send(command);
-
-            return Ok($"Pedido com {id} enviado para remoção.");
-        }
-        catch (ValidationException ex)
-        {
-            return BadRequest(new { ex.Errors });
-        }
-        catch (Exception)
-        {
-            return StatusCode(500, new { Message = $"Ocorreu um erro interno no servidor." });
-        }
-    }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CardapioApi.Controllers;
 
-[Authorize]
+//[Authorize]
 [Route("[controller]")]
 [ApiController]
 public class PedidoItemController(ISender sender) : ControllerBase
@@ -36,7 +36,7 @@ public class PedidoItemController(ISender sender) : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize]
+    //[Authorize]
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] AddPedidoItemCommand request)
     {
@@ -81,7 +81,7 @@ public class PedidoItemController(ISender sender) : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize]
+    //[Authorize]
     [HttpPatch]
     public async Task<IActionResult> Patch([FromBody] UpdatePedidoItemCommand request)
     {
@@ -116,7 +116,7 @@ public class PedidoItemController(ISender sender) : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    [Authorize]
+    //[Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
