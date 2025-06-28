@@ -55,3 +55,4 @@ nunit-*.xml
 /.vs
 /PedidoApi/.vs/PedidoApi
 /PedidoApi/PedidoApi/PedidoApi.csproj.user
+/PedidoApi/.vs/ProjectEvaluation

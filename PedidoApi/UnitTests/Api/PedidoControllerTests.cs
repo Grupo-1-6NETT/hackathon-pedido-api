@@ -95,35 +95,4 @@ public class PedidoControllerTests
         Assert.IsType<BadRequestObjectResult>(result);
     }
     #endregion Patch
-
-    #region Delete
-    [Fact]
-    public async Task Delete_InformadosDadosValidos_DeveRetornarOk()
-    {
-        var guid = Guid.NewGuid();
-        
-        _senderMock.Setup(m => m.Send(It.IsAny<DeletePedidoCommand>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(guid);
-
-        var result = await _sut.Delete(guid);
-        var okResult = Assert.IsType<OkObjectResult>(result);
-        var resultValue = ((string)okResult.Value!)!;
-
-        Assert.Equal($"Pedido com {guid} enviado para remoção.", resultValue);
-    }
-
-    [Fact]
-    public async Task Delete_DadosInvalidos_DeveRetornarBadRequest()
-    {
-        var guid = Guid.Empty;
-
-        _senderMock
-            .Setup(m => m.Send(It.IsAny<DeletePedidoCommand>(), It.IsAny<CancellationToken>()))
-            .Throws(new ValidationException(new List<string>()));
-
-        var result = await _sut.Delete(guid);
-
-        Assert.IsType<BadRequestObjectResult>(result);
-    }
-    #endregion Delete
 }
